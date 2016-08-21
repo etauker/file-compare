@@ -5,6 +5,9 @@ $(function(){
     var fs = require('fs'); // Load the File System to execute our common tasks (CRUD)
     var fileContent = null;
 
+    //
+    var files = [];
+
     // Get all divs with "dropzone" class 
     var holders = document.getElementsByClassName('dropzone')
 
@@ -33,12 +36,18 @@ $(function(){
 
         // Read the file on drop
         holders[index].ondrop = (event) => {
-            var id = event.currentTarget.id;     
+            var divId = event.currentTarget.id;    //id of the div    
             console.log(event);
             event.preventDefault();
+
             for (let file of event.dataTransfer.files) {
                 console.log('File(s) you dragged here: ', file.path);
-                readFile(file.path);
+                var fileNumber = 0;
+
+                if (divId.indexOf("left") != -1) { fileNumber=0; }
+                else if (divId.indexOf("right") != -1) { fileNumber=1; }
+
+                readFile(file.path, fileNumber);
 
                 // Make sure html and php tags are unusable by disabling < and >.
                 fileContent = fileContent.replace(/\</gi, "");
@@ -68,8 +77,15 @@ $(function(){
 
     }
 
-    function readFile(filepath){
-        fileContent = fs.readFileSync(filepath, 'utf-8');
+    function readFile(filepath, number){
+        var contents = fs.readFileSync(filepath, 'utf-8');
+        var contentsArray = contents.split("\n");
+        files[number] = [];
+
+        contentsArray.forEach(function(text, index, array) {
+            files[number][index] = text;
+        });
+        console.log(files);
     }
 
     // function readFile(filepath){
@@ -100,12 +116,11 @@ $(function(){
             var leftContentsArray = leftContents[0].innerHTML.split("<br>");
             var rightContentsArray = rightContents[0].innerHTML.split("<br>");
 
-            $("#"+leftId).html("");
-            $("#"+rightId).html("");
+            $("#"+leftId).html("<code>");
+            $("#"+rightId).html("<code>");
 
 
             var totalLength = (leftContentsArray.length < rightContentsArray.length ? rightContentsArray.length : leftContentsArray.length);
-     
             for (var line=0; line<totalLength; line++) {
 
                 var lines = {first: leftContentsArray[line], second: rightContentsArray[line]};
@@ -114,6 +129,9 @@ $(function(){
                 $("#"+leftId).append(lines.first);
                 $("#"+rightId).append(lines.second);
             }
+
+            $("#"+leftId).append("</code>");
+            $("#"+rightId).append("</code>");
         }
     }
 
@@ -164,6 +182,18 @@ $(function(){
             strings.second='<span class="diff">'+strings.second+'</span>';
         }
         return result;
+    }
+
+
+
+
+
+
+
+    function getLine(id, string) {
+        var lines = [];
+        console.log(lines[id] = string);
+        return lines[id] = string;
     }
 
     // // Display some statistics about this computer, using node's os module.
