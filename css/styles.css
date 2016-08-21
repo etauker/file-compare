@@ -1,9 +1,11 @@
 .dropzone {
 	/*width: 100px;*/
-	height: 600px;
+	height: 400px;
 	width: 45%;
 	display: inline-block;
-	overflow:scroll;
+	overflow-y:scroll;
+	overflow-x: wrap;
+	padding: 10px;
 
 }
 

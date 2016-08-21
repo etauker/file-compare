@@ -46,7 +46,7 @@ $(function(){
                 fileContent = fileContent.replace(/\>/gi, "");
 
                 // Manipulate the fileContent
-                fileContent = fileContent.replace(/\n/gi, "<br/>");
+                fileContent = fileContent.replace(/\n/gi, "<br>");
 
                 // Basic BBCodes.
                 // fileContent = fileContent.replace(/\[b\]/gi, "<b>");
@@ -69,17 +69,21 @@ $(function(){
     }
 
     function readFile(filepath){
-        fs.readFile(filepath, 'utf-8', function (err, data) {
-            if(err){
-                alert("An error ocurred reading the file :" + err.message);
-            }
-            else {
-                // Change how to handle the file content
-                console.log("The file content is : " + data);
-                fileContent = data;
-            }
-        });
+        fileContent = fs.readFileSync(filepath, 'utf-8');
     }
+
+    // function readFile(filepath){
+    //     fs.readFile(filepath, 'utf-8', function (err, data) {
+    //         if(err){
+    //             alert("An error ocurred reading the file :" + err.message);
+    //         }
+    //         else {
+    //             // Change how to handle the file content
+    //             console.log("The file content is : " + data);
+    //             fileContent = data;
+    //         }
+    //     });
+    // }
 
     function compareFiles() {
         var leftId = "dropzone-left";
