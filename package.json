@@ -1,0 +1,21 @@
+{
+  "name": "file-compare",
+  "version": "1.0.0",
+  "description": "Simple application for comparing two files.",
+  "main": "js/main.js",
+  "dependencies": {
+    "pretty-bytes": "^2.0.1"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.35.2",
+    "electron-connect": "~0.4.4",
+    "gulp-cli": "~1.2.2",
+    "gulp": "~3.9.1",
+    "jquery": "~3.1.0"
+  },
+  "scripts": {
+    "start": "gulp serve"
+  },
+  "author": "Tautvydas Kersulis",
+  "license": "ISC"
+}

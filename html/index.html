@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>File Compare</title>
+
+    <!--link rel="stylesheet" href="../css/jquery.flipster.min.css"-->
+    <link rel="stylesheet" href="../css/styles.css">
+    <script>require('electron-connect').client.create()</script>
+
+</head>
+<body>
+
+<!--div class="flipster">
+    <ul>
+    </ul>
+</div-->
+
+<div id="dropzone-left" class="dropzone left" style="background-color: orange;"></div>
+<div id="dropzone-right" class="dropzone right" style="background-color: yellow;"></div>
+
+<p>Hello</p>
+<p class="stats"></p>
+
+<!-->In Electron, this is the correct way to include jQuery<-->
+<script>window.$ = window.jQuery = require('../js/jquery-3.1.0.min.js');</script>
+<!--script src="../js/jquery.flipster.min.js"></script-->
+<script src="../js/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+Test file 1: txt
+
+First test file... 
+Another line
+<script tag>
+<another script /> 
